@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 const io = new Server(server, {
   maxHttpBufferSize: 1e8,
   cors: {
-    origin: [process.env.CLIENT_URL, "*"],
+    origin: "*",
     optionsSuccessStatus: 200,
     methods: ["GET"],
   },
