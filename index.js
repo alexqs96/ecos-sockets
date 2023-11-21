@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 const io = new Server(server, {
   maxHttpBufferSize: 1e8,
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: [process.env.CLIENT_URL, "*"],
     optionsSuccessStatus: 200,
     methods: ["GET"],
   },
@@ -44,7 +44,6 @@ io.on("connection", (socket) => {
 
   socket.on("sendMessage", async (username) => {
     try {
-      console.log("Envio a "+JSON.stringify(username));
       const recipient = await User.findOne({
         username
       }).select('socketId');
